@@ -36,7 +36,6 @@ class GoalActivity : AppCompatActivity() {
 
         binding.goalToolbarTitle.text = data.goalName //title을 지금 들어가있는 goal의 goalName으로 바꿈
 
-        //recyclerview
         val goalAdapter = GoalAdapter { todayGoal ->
             mUserViewModel.updateTodayGoal(todayGoal)
         }
@@ -47,39 +46,22 @@ class GoalActivity : AppCompatActivity() {
         }
 
 //        //지금 들어가 있는 id에 맞게 todayGoal 출력
-//        mUserViewModel.searchDatabase(searchId = data.goalId).observe(this) { list ->
-//            val intent = Intent(context, HomeAdapter::class.java)
-//            var checkCount = 0
-//            list.let {
-//                goalAdapter.setData(it)
-//                //들어가있는 todaygoal이 모두 체크되었다면
-//                /* error */
+        mUserViewModel.searchDatabase(searchId = data.goalId).observe(this) { list ->
+            val intent = Intent(context, HomeAdapter::class.java)
+            var checkCount = 0
+            list.let {
+                goalAdapter.setData(it)
+                //들어가있는 todaygoal이 모두 체크되었다면
+                /* error */
 //                for(i: Int in 0..goalAdapter.itemCount){
 //                    if(goalAdapter.)
 //                        checkCount += 1
 //                }
-////                if(checkCount == goalAdapter.itemCount){
-////                intent.putExtra("allChecked", true)
-////                }
-//            }
-//        }
-
-        mUserViewModel.readTodayGoalData.observe(this, Observer { list ->
-            var checkCount = 0
-            list.let {
-                goalAdapter.setData(list)
-//                for(i: Int in 0..goalAdapter.itemCount) {
-//                    /*error*/
-////                    if (goalAdapter.getItem(i).isChecked == true){
-////
-////                    }
-////                        println("Checked!!!")
-//                }
 //                if(checkCount == goalAdapter.itemCount){
-//                    println("All Checked!!!")
+//                intent.putExtra("allChecked", true)
 //                }
             }
-        })
+        }
 
 
 

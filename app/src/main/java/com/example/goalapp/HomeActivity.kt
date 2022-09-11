@@ -32,17 +32,16 @@ class HomeActivity : AppCompatActivity() {
 
 //        data = intent.getBooleanExtra("allChecked", true) //Goal에서 부터 모두 체크됨을 받음
 
-        val mainAdapter = HomeAdapter {}
+        val homeAdapter = HomeAdapter {} //HomeAdapter
 
         binding.rv.apply {
-            adapter = mainAdapter
+            adapter = homeAdapter
             layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         }
 
-        //mUserViewModel
-        mUserViewModel = ViewModelProvider(this).get(viewModel::class.java)
+        mUserViewModel = ViewModelProvider(this)[viewModel::class.java]
         mUserViewModel.readGoalData.observe(this, Observer { goal ->
-            mainAdapter.setData(goal)
+            homeAdapter.setData(goal)
         })
 
         //fab을 클릭했을 때

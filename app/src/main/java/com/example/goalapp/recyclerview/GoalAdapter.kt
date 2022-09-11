@@ -13,7 +13,7 @@ import com.example.goalapp.databinding.TodayGoalBlockBinding
 import com.example.goalapp.db.entity.TodayGoal
 import kotlinx.android.synthetic.main.today_goal_block.view.*
 
-class GoalAdapter(val check_callback: (todayGoal: TodayGoal) -> Unit) : RecyclerView.Adapter<GoalAdapter.MyViewHolder2>() {
+class GoalAdapter(private val check_callback: (todayGoal: TodayGoal) -> Unit) : RecyclerView.Adapter<GoalAdapter.MyViewHolder2>() {
 
     private var todayGoalList = listOf<TodayGoal>()
 
@@ -21,7 +21,6 @@ class GoalAdapter(val check_callback: (todayGoal: TodayGoal) -> Unit) : Recycler
     inner class MyViewHolder2(private val binding: TodayGoalBlockBinding): RecyclerView.ViewHolder(binding.root) {
         private val context = binding.root.context
 
-        @SuppressLint("ResourceAsColor")
         fun bind(item: TodayGoal) {
             binding.tvTodayGoalName.text = item.todayGoalName
 
