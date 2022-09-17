@@ -12,9 +12,7 @@ import com.example.goalapp.databinding.GoalBlockBinding
 import com.example.goalapp.db.entity.Goal
 
 
-class HomeAdapter(val all_check_callback: (success: String) -> Unit) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
-
-    private var goalList = listOf<Goal>()
+class HomeAdapter(private val goalList: List<Goal>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: GoalBlockBinding): RecyclerView.ViewHolder(binding.root) {
         private val context = binding.root.context
@@ -28,10 +26,9 @@ class HomeAdapter(val all_check_callback: (success: String) -> Unit) : RecyclerV
             if(item.isAllChecked){
                 binding.tvGoalSuccess.text = "달성"
                 binding.tvGoalSuccess.setTextColor(ContextCompat.getColor(context!!, R.color.BackgroundGreen))
+            } else {
+                binding.tvGoalSuccess.text = "미달성"
             }
-
-            binding.tvGoalName.text = item.goalName
-            binding.tvGoalDay.text = item.goalDeadline
 
             itemView.setOnClickListener {
                 val intent = Intent(context, GoalActivity::class.java)
@@ -52,9 +49,4 @@ class HomeAdapter(val all_check_callback: (success: String) -> Unit) : RecyclerV
 
     override fun getItemCount(): Int = goalList.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(goal: List<Goal>){
-        this.goalList = goal
-        notifyDataSetChanged() //list 업데이트
-    }
 }

@@ -9,11 +9,11 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "goal_table")
 data class Goal(
     @PrimaryKey(autoGenerate = true)
-    @SerializedName("goalId") val goalId: Int,
+    val goalId: Int,
     //data를 주고 받을 때 명시할 이름
-    @SerializedName("goalIcon") val goalIcon: Int,
-    @SerializedName("goalName") val goalName: String,
-    @SerializedName("goalDeadline") val goalDeadline: String,
-    @SerializedName("isAllChecked") val isAllChecked: String
+    val goalIcon: Int,
+    val goalName: String,
+    val goalDeadline: String,
+    val isAllChecked: Boolean
 ): Parcelable
 

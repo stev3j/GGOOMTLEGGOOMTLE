@@ -58,6 +58,16 @@
         <entry key="..\:/Users/user/Desktop/kotlin/GoalApp/app/src/main/res/layout/menu.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/user/Desktop/kotlin/GoalApp/app/src/main/res/menu/goal_menu.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/kotlin/GoalApp/app/src/main/res/menu/sample_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/checkbox.xml" value="0.1765" />
+        <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.1765" />
+        <entry key="app/src/main/res/layout/activity_goal.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/activity_make_goal.xml" value="0.44114583333333335" />
+        <entry key="app/src/main/res/layout/activity_make_today_goal.xml" value="0.44114583333333335" />
+        <entry key="app/src/main/res/layout/activity_update_goal.xml" value="0.44114583333333335" />
+        <entry key="app/src/main/res/layout/goal_block.xml" value="0.44114583333333335" />
+        <entry key="app/src/main/res/layout/today_goal_block.xml" value="0.44114583333333335" />
       </map>
     </option>
   </component>

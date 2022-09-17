@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.goalapp.db.database
+import com.example.goalapp.db.DataBase
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
 import kotlinx.coroutines.Dispatchers
@@ -15,12 +15,12 @@ class viewModel(application: Application): AndroidViewModel(application) {
 
     val readGoalData: LiveData<List<Goal>>
     val readTodayGoalData: LiveData<List<TodayGoal>>
-    private val repository: repository
+    private val repository: Repository
 
     //시작했을 때
     init {
-        val goalDao = database.invoke(application).detailDao()
-        repository = repository(goalDao)
+        val goalDao = DataBase.invoke(application).detailDao()
+        repository = Repository(goalDao)
         readGoalData = repository.readGoalData
         readTodayGoalData = repository.readTodayGoalData
     }
@@ -43,12 +43,6 @@ class viewModel(application: Application): AndroidViewModel(application) {
     fun updateGoal(goal: Goal){
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateGoal(goal)
-        }
-    }
-
-    fun updateTodayGoal(goal: TodayGoal) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateTodayGoal(goal)
         }
     }
 

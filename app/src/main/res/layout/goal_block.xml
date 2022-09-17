@@ -39,7 +39,7 @@
             android:text="@{items.goalName}"
             android:fontFamily="@font/pretendard_medium"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/iv_goal"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="미달성"
-            android:text="@{items.isAllChecked}"
             android:textColor="@color/textColor"
             android:fontFamily="@font/pretendard_regular"
             app:layout_constraintEnd_toEndOf="parent"

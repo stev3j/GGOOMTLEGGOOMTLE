@@ -12,16 +12,16 @@ import com.example.goalapp.db.entity.TodayGoal
     version = 1,
     exportSchema = false
 )
-abstract class database: RoomDatabase() {
+abstract class DataBase: RoomDatabase() {
 
     //추상 클래스의 함수(확정되지 않음)
-    abstract fun detailDao(): dao
+    abstract fun detailDao(): Dao
 
     //상속받아지는 클래스에서 모두 동일한 값이 들어감
     companion object{
         @Volatile
         //인스턴스 : 할당된 메모리(구체화된 객체)
-        private var INSTANCE: database? = null
+        private var INSTANCE: DataBase? = null
         private val lock = Any()
 
         operator fun invoke(context: Context) = INSTANCE ?: synchronized(lock){
@@ -32,7 +32,7 @@ abstract class database: RoomDatabase() {
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            database::class.java,
+            DataBase::class.java,
             "GoalList"
         ).build()
     }

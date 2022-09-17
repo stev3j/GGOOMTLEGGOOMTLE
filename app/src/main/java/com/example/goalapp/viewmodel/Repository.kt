@@ -1,15 +1,15 @@
 package com.example.goalapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import com.example.goalapp.db.dao
+import androidx.lifecycle.MutableLiveData
+import com.example.goalapp.db.Dao
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
 
 //Dao의 기능들을 정리
-class repository(private val goalDao: dao) {
+class Repository(private val goalDao: Dao) {
 
-    val readGoalData: LiveData<List<Goal>> = goalDao.readGoalData()
-    val readTodayGoalData: LiveData<List<TodayGoal>> = goalDao.readTodayGoalData()
+    val readGoalData: MutableLiveData<List<Goal>> = goalDao.readGoalData()
+    val readTodayGoalData: MutableLiveData<List<TodayGoal>> = goalDao.readTodayGoalData()
     //suspend : 비동기 환경에서 사용될 수 있다는 의미, 코루틴 내에서만 호출 가능
     //추가
     suspend fun addGoal(goal: Goal){
@@ -43,7 +43,7 @@ class repository(private val goalDao: dao) {
     }
 
     //구분
-    fun searchDatabase(searchId: Int): LiveData<List<TodayGoal>> {
+    fun searchDatabase(searchId: Int): MutableLiveData<List<TodayGoal>> {
         return goalDao.searchDatabase(searchId)
     }
 }

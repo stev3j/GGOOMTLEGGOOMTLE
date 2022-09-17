@@ -9,38 +9,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.goalapp.R
 import com.example.goalapp.databinding.ActivityHomeBinding
+import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.viewmodel.viewModel
 import com.example.goalapp.view.adapter.HomeAdapter
+import com.example.goalapp.viewmodel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
     private val binding: ActivityHomeBinding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
-//    private val goalblock_binding: GoalBlockBinding by lazy { GoalBlockBinding.inflate(layoutInflater) }
-
-    private lateinit var mUserViewModel: viewModel
-
-//    private var data by Delegates.notNull<Boolean>()
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeAdapter : HomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        data = intent.getBooleanExtra("allChecked", true) //Goal에서 부터 모두 체크됨을 받음
-
-        val homeAdapter = HomeAdapter {} //HomeAdapter
-
-        binding.rv.apply {
-            adapter = homeAdapter
-            layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        }
-
-        mUserViewModel = ViewModelProvider(this)[viewModel::class.java]
-        mUserViewModel.readGoalData.observe(this, Observer { goal ->
-            homeAdapter.setData(goal)
-        })
+        performViewModel()
+        observeViewModel()
 
         //fab을 클릭했을 때
-        binding.floatingActionButton.setOnClickListener {
-            startActivity(Intent(this, MakeGoalActivity::class.java))  // HomeActivity에서 MakeGoalActivity로 이동
+        homeViewModel.onClickFloatingEvent.observe(this) {
+            startActivity(Intent(this, MakeGoalActivity::class.java))
         }
 
         //menu
@@ -57,6 +45,29 @@ class HomeActivity : AppCompatActivity() {
                 }
                 true
             }
+        }
+    }
+
+    private fun observeViewModel() {
+        with(homeViewModel) {
+            readGoalData.observe(this@HomeActivity) {
+                initHomeAdapter(it)
+            }
+        }
+    }
+
+    private fun performViewModel() {
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        binding.vm = homeViewModel
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
+    }
+
+    private fun initHomeAdapter(items : List<Goal>) {
+        with(binding.rvHome) {
+            homeAdapter = HomeAdapter(items)
+            adapter = homeAdapter
+            layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         }
     }
 }

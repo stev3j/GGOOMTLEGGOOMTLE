@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="home"
-            type="com.example.goalapp.view.activity.HomeActivity"/>
+            name="vm"
+            type="com.example.goalapp.viewmodel.HomeViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,6 @@
             android:background="@color/white"
             android:theme="@style/ToolbarTheme"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:titleTextAppearance="@style/Toolbar.TitleText"
@@ -56,19 +55,19 @@
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_add"
             android:tint="@color/FabColor"
+            android:onClick="@{() -> vm.onClickFloatingBtn()}"
             app:backgroundTint="@color/textColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:maxImageSize="45dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
+            android:id="@+id/rv_home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingTop="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_toolbar"
             tools:listitem="@layout/goal_block" />

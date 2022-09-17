@@ -1,12 +1,14 @@
 package com.example.goalapp.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+import androidx.room.Dao
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
 
 @Dao
-interface dao {
+interface Dao {
 
     //추가
     //onConflict : 중복된 Primary Key(id) 값이 존재할 경우 무시(IGNORE)
@@ -35,7 +37,7 @@ interface dao {
 
     //today_gaol_table에 있는 id와 searchId가 같은 TodayGoal의 요소들을 보여주기
     @Query("SELECT * FROM today_goal_table WHERE id LIKE :searchId")
-    fun searchDatabase(searchId: Int): LiveData<List<TodayGoal>>
+    fun searchDatabase(searchId: Int): MutableLiveData<List<TodayGoal>>
 
     //모든 올해의 목표 삭제하기
     @Query("DELETE FROM goal_table")
@@ -43,10 +45,10 @@ interface dao {
 
     //추가한 데이터 읽기 기능
     @Query("SELECT * FROM goal_table ORDER BY goalId ASC")
-    fun readGoalData(): LiveData<List<Goal>>
+    fun readGoalData(): MutableLiveData<List<Goal>>
 
     @Query("SELECT * FROM today_goal_table ORDER BY todayGoalId ASC")
-    fun readTodayGoalData(): LiveData<List<TodayGoal>>
+    fun readTodayGoalData(): MutableLiveData<List<TodayGoal>>
 }
 
 
