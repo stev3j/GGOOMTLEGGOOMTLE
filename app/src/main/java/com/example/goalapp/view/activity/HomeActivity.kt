@@ -1,4 +1,4 @@
-package com.example.goalapp
+package com.example.goalapp.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,16 +7,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.goalapp.R
 import com.example.goalapp.databinding.ActivityHomeBinding
-import com.example.goalapp.databinding.GoalBlockBinding
-import com.example.goalapp.db.entity.Goal
-import com.example.goalapp.db.entity.TodayGoal
-import com.example.goalapp.db.viewModel
-import com.example.goalapp.goalmake.MakeGoalActivity
-import com.example.goalapp.goalmake.UpdateGoalActivity
-import com.example.goalapp.recyclerview.GoalAdapter
-import com.example.goalapp.recyclerview.HomeAdapter
-import kotlin.properties.Delegates
+import com.example.goalapp.viewmodel.viewModel
+import com.example.goalapp.view.adapter.HomeAdapter
 
 class HomeActivity : AppCompatActivity() {
     private val binding: ActivityHomeBinding by lazy { ActivityHomeBinding.inflate(layoutInflater) }

@@ -1,21 +1,19 @@
-package com.example.goalapp.goalmake
+package com.example.goalapp.view.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.goalapp.GoalActivity
-import com.example.goalapp.databinding.ActivityTodayGoalMakeBinding
+import com.example.goalapp.databinding.ActivityMakeTodayGoalBinding
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
-import com.example.goalapp.db.viewModel
-import kotlinx.android.synthetic.main.activity_today_goal_make.*
+import com.example.goalapp.viewmodel.viewModel
+import kotlinx.android.synthetic.main.activity_make_today_goal.*
 
 class MakeTodayGoalActivity : AppCompatActivity() {
     //binding
-    private val binding: ActivityTodayGoalMakeBinding by lazy { ActivityTodayGoalMakeBinding.inflate(layoutInflater) }
+    private val binding: ActivityMakeTodayGoalBinding by lazy { ActivityMakeTodayGoalBinding.inflate(layoutInflater) }
 
     private lateinit var data: Goal
 
@@ -45,7 +43,7 @@ class MakeTodayGoalActivity : AppCompatActivity() {
 
     private fun insertDataToDatabase() {
         //입력된 값을 가져옴
-        val goalName = today_goalInsert.text.toString()
+        val goalName = et_today_goalInsert.text.toString()
 
         //입력됐는지 체크
         if(inputCheck(goalName)){

@@ -1,14 +1,12 @@
-package com.example.goalapp.recyclerview
+package com.example.goalapp.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.goalapp.GoalActivity
+import com.example.goalapp.view.activity.GoalActivity
 import com.example.goalapp.R
 import com.example.goalapp.databinding.GoalBlockBinding
 import com.example.goalapp.db.entity.Goal
@@ -23,9 +21,14 @@ class HomeAdapter(val all_check_callback: (success: String) -> Unit) : RecyclerV
         fun bind(item: Goal) {
 //            all_check_callback.invoke()
 
-            //아래 처럼 만들어야함.. (Goal 안의 목표를 전부 달성하였을 때)
-            binding.tvGoalSuccess.text = "달성"
-            binding.tvGoalSuccess.setTextColor(ContextCompat.getColor(context!!, R.color.BackgroundGreen))
+            //Goal안에 들어가있는 todayGoal의 수가 1개 이상이고,
+            //그 모든 todayGoal의 isChecked가 true일 때,
+            //Home으로 intent를 보내 해당하는 Goal의 isAllChecked를 true로 변환!!!
+
+            if(item.isAllChecked){
+                binding.tvGoalSuccess.text = "달성"
+                binding.tvGoalSuccess.setTextColor(ContextCompat.getColor(context!!, R.color.BackgroundGreen))
+            }
 
             binding.tvGoalName.text = item.goalName
             binding.tvGoalDay.text = item.goalDeadline

@@ -1,9 +1,10 @@
-package com.example.goalapp.db
+package com.example.goalapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.goalapp.db.database
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
 import kotlinx.coroutines.Dispatchers

@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".goalmake.MakeTodayGoalActivity"
+            android:name=".view.activity.MakeTodayGoalActivity"
             android:exported="false" />
         <activity
-            android:name=".goalmake.UpdateGoalActivity"
+            android:name=".view.activity.UpdateGoalActivity"
             android:exported="false"/>
         <activity
-            android:name=".GoalActivity"
+            android:name=".view.activity.GoalActivity"
             android:exported="false"/>
         <activity
-            android:name=".goalmake.MakeGoalActivity"
+            android:name=".view.activity.MakeGoalActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".view.activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="false">
         </activity>
     </application>

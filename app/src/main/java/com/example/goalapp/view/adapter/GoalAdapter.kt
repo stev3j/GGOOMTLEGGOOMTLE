@@ -1,16 +1,17 @@
-package com.example.goalapp.recyclerview
+package com.example.goalapp.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Paint
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.goalapp.R
+import com.example.goalapp.databinding.ActivityMakeTodayGoalBinding
 import com.example.goalapp.databinding.TodayGoalBlockBinding
 import com.example.goalapp.db.entity.TodayGoal
+import kotlinx.android.synthetic.main.today_goal_block.*
 import kotlinx.android.synthetic.main.today_goal_block.view.*
 
 class GoalAdapter(private val check_callback: (todayGoal: TodayGoal) -> Unit) : RecyclerView.Adapter<GoalAdapter.MyViewHolder2>() {
@@ -22,7 +23,7 @@ class GoalAdapter(private val check_callback: (todayGoal: TodayGoal) -> Unit) : 
         private val context = binding.root.context
 
         fun bind(item: TodayGoal) {
-            binding.tvTodayGoalName.text = item.todayGoalName
+            binding.items = item
 
             checkGoal(item, binding, context)
 
@@ -49,9 +50,12 @@ class GoalAdapter(private val check_callback: (todayGoal: TodayGoal) -> Unit) : 
         notifyDataSetChanged() //list 업데이트
     }
 
-    fun getItem(position: Int): TodayGoal {
-        return this.todayGoalList[position]
-    }
+//    fun checkAllChecked(todayGoal: List<TodayGoal>){
+//        //todayGoal은 리스트이기에 isChecked를 가져오지 못함
+//        todayGoal.isChecked
+//        notifyDataSetChanged() //list 업데이트
+//    }
+
 
     fun changeCheckValue(item: TodayGoal){
         if (!item.isChecked) {
@@ -68,12 +72,12 @@ class GoalAdapter(private val check_callback: (todayGoal: TodayGoal) -> Unit) : 
         if (!item.isChecked) {
             binding.tvTodayGoalName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             binding.tvTodayGoalName.setTextColor(ContextCompat.getColor(context, R.color.textColor))
-            binding.ivCheckbox.setImageResource(R.drawable.checkedbox)
+            binding.todayGoalBlock.iv_checkbox.setImageResource(R.drawable.checkedbox)
         }
         else if(item.isChecked) {
             binding.tvTodayGoalName.paintFlags = 0
             binding.tvTodayGoalName.setTextColor(ContextCompat.getColor(context, R.color.black))
-            binding.ivCheckbox.setImageResource(R.drawable.checkbox)
+            binding.todayGoalBlock.iv_checkbox.setImageResource(R.drawable.checkbox)
         }
     }
 

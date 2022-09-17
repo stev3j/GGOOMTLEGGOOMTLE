@@ -33,11 +33,9 @@ interface dao {
     // <-- 세부적인 기능을 만들기 위해서는 Query 어노테이션을 작성함 -->
     // <-- + SQL 문을 작성함 -->
 
-
     //today_gaol_table에 있는 id와 searchId가 같은 TodayGoal의 요소들을 보여주기
     @Query("SELECT * FROM today_goal_table WHERE id LIKE :searchId")
     fun searchDatabase(searchId: Int): LiveData<List<TodayGoal>>
-
 
     //모든 올해의 목표 삭제하기
     @Query("DELETE FROM goal_table")

@@ -1,20 +1,18 @@
-package com.example.goalapp
+package com.example.goalapp.view.activity
 
 import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.goalapp.R
 import com.example.goalapp.databinding.ActivityGoalBinding
 import com.example.goalapp.db.entity.Goal
-import com.example.goalapp.db.viewModel
-import com.example.goalapp.goalmake.MakeTodayGoalActivity
-import com.example.goalapp.goalmake.UpdateGoalActivity
-import com.example.goalapp.recyclerview.GoalAdapter
-import com.example.goalapp.recyclerview.HomeAdapter
+import com.example.goalapp.viewmodel.viewModel
+import com.example.goalapp.view.adapter.GoalAdapter
+import com.example.goalapp.view.adapter.HomeAdapter
 
 class GoalActivity : AppCompatActivity() {
 
@@ -45,12 +43,14 @@ class GoalActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         }
 
-//        //지금 들어가 있는 id에 맞게 todayGoal 출력
         mUserViewModel.searchDatabase(searchId = data.goalId).observe(this) { list ->
             val intent = Intent(context, HomeAdapter::class.java)
             var checkCount = 0
             list.let {
                 goalAdapter.setData(it)
+                //모든 todaygoal이 모두 체크됐는지 확인하는 함수
+//                it[].isChecked
+//                goalAdapter.
                 //들어가있는 todaygoal이 모두 체크되었다면
                 /* error */
 //                for(i: Int in 0..goalAdapter.itemCount){

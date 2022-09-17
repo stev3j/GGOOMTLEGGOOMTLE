@@ -1,19 +1,14 @@
-package com.example.goalapp.goalmake
+package com.example.goalapp.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.goalapp.HomeActivity
-import com.example.goalapp.R
-import com.example.goalapp.databinding.ActivityMakeGoalBinding
 import com.example.goalapp.databinding.ActivityUpdateGoalBinding
 import com.example.goalapp.db.entity.Goal
-import com.example.goalapp.db.viewModel
+import com.example.goalapp.viewmodel.viewModel
 import kotlinx.android.synthetic.main.activity_make_goal.*
 
 class UpdateGoalActivity : AppCompatActivity() {
@@ -51,7 +46,7 @@ class UpdateGoalActivity : AppCompatActivity() {
 
         //입력됐는지 체크
         if(inputCheck(goalName, goalDeadline)){
-            val updatedUser = Goal(data.goalId, goalName, goalDeadline)
+            val updatedUser = Goal(data.goalId, 0, goalName = goalName, goalDeadline = goalDeadline, isAllChecked = "미달성")
             //업데이트
             mUserViewModel.updateGoal(updatedUser)
             Toast.makeText(applicationContext, "목표가 수정되었습니다!", Toast.LENGTH_LONG).show()

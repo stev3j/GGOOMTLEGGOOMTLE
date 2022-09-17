@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -23,9 +24,9 @@ import kotlinx.android.parcel.Parcelize
     ]
 )
 data class TodayGoal(
-    val id: Int,
+    @SerializedName("id") val id: Int,
     @PrimaryKey(autoGenerate = true)
-    val todayGoalId: Int,
-    val todayGoalName: String,
-    val isChecked: Boolean = true
+    @SerializedName("todayGoalId") val todayGoalId: Int,
+    @SerializedName("todayGoalName") val todayGoalName: String,
+    @SerializedName("isChecked") val isChecked: Boolean = false
 ): Parcelable

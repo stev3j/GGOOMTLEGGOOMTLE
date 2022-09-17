@@ -1,6 +1,7 @@
-package com.example.goalapp.db
+package com.example.goalapp.viewmodel
 
 import androidx.lifecycle.LiveData
+import com.example.goalapp.db.dao
 import com.example.goalapp.db.entity.Goal
 import com.example.goalapp.db.entity.TodayGoal
 
